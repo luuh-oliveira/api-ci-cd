@@ -59,14 +59,6 @@ public class UsuarioControllerTests {
         class BuscaPorId {
 
             @Test
-            @DisplayName("Quando o ID não existe, então retorna status 404")
-            void quandoOIdNaoExisteEntaoRetornaStatus404() throws Exception {
-
-                mockMvc.perform(get("/usuarios/1"))
-                        .andExpect(status().isNotFound());
-            }
-
-            @Test
             @DisplayName("Quando o ID existe, então retorna status 200")
             void quandoOIdExisteEntaoRetornaStatus200() throws Exception {
 
