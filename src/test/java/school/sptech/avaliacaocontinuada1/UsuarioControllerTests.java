@@ -8,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -346,6 +348,26 @@ public class UsuarioControllerTests {
             mockMvc.perform(delete("/usuarios/1"))
                     .andExpect(status().isOk());
         }
+    }
+
+    @Nested
+    @DisplayName("Métodos auxiliares")
+    class MetodosAuxiliares {
+
+        @Test
+        @DisplayName("Quando o e-mail é válido, então retorna true")
+        void quandoOEmailEValidoEntaoRetornaTrue() {
+            boolean resultado = usuarioController.emailValido("email@email.com");
+            assertTrue(resultado);
+        }
+
+        @Test
+        @DisplayName("Quando o e-mail não é válido, então retorna false")
+        void quandoOEmailNaoEValidoEntaoRetornaFalse() {
+            boolean resultado = usuarioController.emailValido("email");
+            assertFalse(resultado);
+        }
+
     }
 
 
